@@ -27,5 +27,9 @@
         <source-file src="src/ios/AppDelegate+SiriShortcuts.m" />
         <source-file src="src/ios/ShortcutPresentedDelegate.swift" />
 
+        <source-file src="src/ios/IntentHandler.swift" />
+        <source-file src="src/ios/PersonInfoIntentHandler.swift" />
+
+
     </platform>
 </plugin>
