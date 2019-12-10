@@ -15,21 +15,23 @@ import IntentsUI
     }
 
     @objc(donate:) func donate(_ command: CDVInvokedUrlCommand) {
-        if #available(iOS 12.0, *) {
-            self.activity = self.createUserActivity(from: command, makeActive: true)
+        self.commandDelegate!.run(inBackground: {
+            if #available(iOS 12.0, *) {
+                self.activity = self.createUserActivity(from: command, makeActive: true)
 
-            // tell Cordova we're all OK
-            self.sendStatusOk(command)
+                // tell Cordova we're all OK
+                self.sendStatusOk(command)
 
-            return
-        }
+                return
+            }
 
-        // shortcut not donated
-        self.sendStatusError(command)
+            // shortcut not donated
+            self.sendStatusError(command)
+        })
     }
 
     @objc(present:) func present(_ command: CDVInvokedUrlCommand) {
-        //self.commandDelegate!.run(inBackground: {
+        self.commandDelegate!.run(inBackground: {
             if #available(iOS 12.0, *) {
                 self.activity = self.createUserActivity(from: command, makeActive: false)
 
@@ -57,7 +59,7 @@ import IntentsUI
 
             // shortcut not donated
             self.sendStatusError(command)
-        //})
+        })
     }
 
     @objc(remove:) func remove(_ command: CDVInvokedUrlCommand) {
