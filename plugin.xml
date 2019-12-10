@@ -29,6 +29,7 @@
 
         <source-file src="src/ios/IntentHandler.swift" />
         <source-file src="src/ios/PersonInfoIntentHandler.swift" />
+        <source-file src="src/ios/Intents.intentdefinition" />
 
 
     </platform>
