@@ -15,38 +15,19 @@ import IntentsUI
     }
 
     @objc(donate:) func donate(_ command: CDVInvokedUrlCommand) {
-        // self.commandDelegate!.run(inBackground: {
-        //     if #available(iOS 12.0, *) {
-        //         self.activity = self.createUserActivity(from: command, makeActive: true)
+        self.commandDelegate!.run(inBackground: {
+            if #available(iOS 12.0, *) {
+                self.activity = self.createUserActivity(from: command, makeActive: true)
 
-        //         // tell Cordova we're all OK
-        //         self.sendStatusOk(command)
+                // tell Cordova we're all OK
+                self.sendStatusOk(command)
 
-        //         return
-        //     }
-
-        //     // shortcut not donated
-        //     self.sendStatusError(command)
-        // })
-
-        let intent = PersonInfoIntent()
-        intent.suggestedInvocationPhrase = "Add person Info"
-        intent.firstName = "firstName"
-        intent.lastName = "lastName"
-        intent.companyName = "companyName"
-        let interaction = INInteraction(intent: intent, response: nil)
-        
-        interaction.donate { (error) in
-            if error != nil {
-                if let error = error as NSError? {
-                    print("Interaction donation failed: \(error.description)")
-                } else {
-                    print("Successfully donated interaction")
-                }
+                return
             }
-        }
 
-        self.sendStatusOk(command)
+            // shortcut not donated
+            self.sendStatusError(command)
+        })
     }
 
     @objc(present:) func present(_ command: CDVInvokedUrlCommand) {
