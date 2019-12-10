@@ -29,7 +29,7 @@ import IntentsUI
     }
 
     @objc(present:) func present(_ command: CDVInvokedUrlCommand) {
-        self.commandDelegate!.run(inBackground: {
+        //self.commandDelegate!.run(inBackground: {
             if #available(iOS 12.0, *) {
                 self.activity = self.createUserActivity(from: command, makeActive: false)
 
@@ -57,7 +57,7 @@ import IntentsUI
 
             // shortcut not donated
             self.sendStatusError(command)
-        })
+        //})
     }
 
     @objc(remove:) func remove(_ command: CDVInvokedUrlCommand) {
