@@ -97,7 +97,7 @@ import IntentsUI
     @objc(getActivatedShortcut:) func getActivatedShortcut(_ command: CDVInvokedUrlCommand) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        self.commandDelegate!.run(inBackground: {
+        // self.commandDelegate!.run(inBackground: {
             if #available(iOS 12.0, *) {
                 var pluginResult = CDVPluginResult(
                     status: CDVCommandStatus_OK
@@ -131,7 +131,7 @@ import IntentsUI
             } else {
                 self.sendStatusError(command)
             }
-        })
+        // })
     }
 
     func createUserActivity(from command: CDVInvokedUrlCommand, makeActive: Bool) -> NSUserActivity? {
