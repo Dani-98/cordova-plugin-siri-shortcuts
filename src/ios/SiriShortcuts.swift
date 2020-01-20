@@ -31,7 +31,7 @@ import IntentsUI
     }
 
     @objc(present:) func present(_ command: CDVInvokedUrlCommand) {
-        // self.commandDelegate!.run(inBackground: {
+        self.commandDelegate!.run(inBackground: {
             if #available(iOS 12.0, *) {
                 self.activity = self.createUserActivity(from: command, makeActive: false)
 
@@ -59,7 +59,7 @@ import IntentsUI
 
             // shortcut not donated
             self.sendStatusError(command)
-        // })
+        })
     }
 
     @objc(remove:) func remove(_ command: CDVInvokedUrlCommand) {
@@ -97,7 +97,7 @@ import IntentsUI
     @objc(getActivatedShortcut:) func getActivatedShortcut(_ command: CDVInvokedUrlCommand) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        // self.commandDelegate!.run(inBackground: {
+        self.commandDelegate!.run(inBackground: {
             if #available(iOS 12.0, *) {
                 var pluginResult = CDVPluginResult(
                     status: CDVCommandStatus_OK
@@ -121,17 +121,17 @@ import IntentsUI
                         messageAs: returnData as [AnyHashable: Any]
                     )
 
-                    let clear = command.arguments[0] as? Bool ?? true
-                    if clear {
-                        appDelegate.userActivity = nil
-                    }
+                    // let clear = command.arguments[0] as? Bool ?? true
+                    // if clear {
+                    //     appDelegate.userActivity = nil
+                    // }
                 }
 
                 self.send(pluginResult: pluginResult!, command: command)
             } else {
                 self.sendStatusError(command)
             }
-        // })
+        })
     }
 
     func createUserActivity(from command: CDVInvokedUrlCommand, makeActive: Bool) -> NSUserActivity? {
