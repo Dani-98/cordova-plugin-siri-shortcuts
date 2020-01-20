@@ -121,10 +121,10 @@ import IntentsUI
                         messageAs: returnData as [AnyHashable: Any]
                     )
 
-                    // let clear = command.arguments[0] as? Bool ?? true
-                    // if clear {
-                    //     appDelegate.userActivity = nil
-                    // }
+                    let clear = command.arguments[0] as? Bool ?? true
+                    if clear {
+                        appDelegate.userActivity = nil
+                    }
                 }
 
                 self.send(pluginResult: pluginResult!, command: command)
